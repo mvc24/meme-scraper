@@ -1,0 +1,17 @@
+{
+  "name": "meme-scraper",
+  "version": "1.0.0",
+  "description": "meme scraper",
+  "keywords": [],
+  "license": "ISC",
+  "author": "Maria Valencia",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "eslint-config-upleveled": "^5.0.4",
+    "typescript": "^5.2.2"
+  }
+}
