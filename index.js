@@ -46,4 +46,34 @@ const getImages = root.querySelectorAll('img').toString();
 
 const getLinks = getImages.match(/https.*?00/g);
 const getTenLinks = getLinks.slice(0, 11);
-console.log(getTenLinks);
+// console.log(getTenLinks);
+
+// getTenLinks.forEach((link) => console.log(link));
+
+let fileName = '';
+
+for (let i = 1; i <= 10; i++) {
+  fileName = +i;
+  if (i < 10) {
+    fileName = `0${i}.jpg`;
+  } else {
+    fileName = `${i}.jpg`;
+  }
+}
+
+/* let imageUrl = fetch(link)
+  .then((response) => response.buffer())
+  .then((buffer) => {
+    // Write the buffer to a file
+    fs.writeFile(path.join(dirPath, fileName), buffer, (err) => {
+      if (err) {
+        console.error(err);
+      } else {
+        console.log('Image downloaded successfully');
+      }
+    });
+  })
+  .catch((error) => {
+    console.error(error);
+  }); */
+console.log(fileName);
