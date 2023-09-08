@@ -1,8 +1,16 @@
-import { mkdir } from 'node:fs';
+import { Buffer } from 'node:buffer';
+import { mkdir, writeFile } from 'node:fs';
+import path from 'node:path';
 import url from 'node:url';
 import * as fs from 'fs';
 import fetch from 'node-fetch';
 import { parse } from 'node-html-parser';
+
+/* const data = new Uint8Array(Buffer.from('Hello Node.js'));
+writeFile('message.txt', data, (err) => {
+  if (err) throw err;
+  console.log('The file has been saved!');
+}); */
 
 mkdir('./Memes', { recursive: true }, (err) => {
   if (err) throw err;
@@ -49,23 +57,56 @@ const getTenLinks = getLinks.slice(0, 11);
 // console.log(getTenLinks);
 
 // getTenLinks.forEach((link) => console.log(link));
+// it doesn't like the link
+
+const linkArray = [];
+
+for (let link of getTenLinks) {
+  linkArray.push(link);
+}
+
+// console.log(linkArray);
 
 let fileName = '';
 
+const fileNameArray = [];
+
 for (let i = 1; i <= 10; i++) {
-  fileName = +i;
   if (i < 10) {
     fileName = `0${i}.jpg`;
+    // console.log(fileName);
+    fileNameArray.push(fileName);
   } else {
     fileName = `${i}.jpg`;
+    // console.log(fileName);
+    fileNameArray.push(fileName);
   }
 }
 
-/* let imageUrl = fetch(link)
-  .then((response) => response.buffer())
+let a = fileNameArray;
+let b = linkArray;
+
+const nameLinkObject = (a, b) => {
+  let obj = {};
+  a.forEach((k, i) => {
+    obj[k] = b[i];
+  });
+  return obj;
+};
+console.log(nameLinkObject(a, b));
+
+const dirPath = './Memes';
+
+// fs.writeFile(dirPath);
+
+/* let imageUrl = fetch(linkArray)
+  .then((res) => {
+    // res.arrayBuffer();
+    console.log('value of response', res.url);
+  })
   .then((buffer) => {
     // Write the buffer to a file
-    fs.writeFile(path.join(dirPath, fileName), buffer, (err) => {
+    fs.writeFile(path.join(dirPath, fileNameArray[0]), buffer, (err) => {
       if (err) {
         console.error(err);
       } else {
@@ -76,4 +117,3 @@ for (let i = 1; i <= 10; i++) {
   .catch((error) => {
     console.error(error);
   }); */
-console.log(fileName);
