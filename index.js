@@ -1,9 +1,4 @@
-import { Buffer } from 'node:buffer';
-import { mkdir, writeFile } from 'node:fs';
-import https from 'node:https';
-import path from 'node:path';
-import url from 'node:url';
-import cheerio from 'cheerio';
+import { mkdir } from 'node:fs';
 import * as fs from 'fs';
 import fetch from 'node-fetch';
 import { parse } from 'node-html-parser';
@@ -32,11 +27,9 @@ const fileNameArray = [];
 for (let i = 1; i <= 10; i++) {
   if (i < 10) {
     fileName = `0${i}.jpg`;
-    // console.log(fileName);
     fileNameArray.push(fileName);
   } else {
     fileName = `${i}.jpg`;
-    // console.log(fileName);
     fileNameArray.push(fileName);
   }
 }
