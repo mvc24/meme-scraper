@@ -21,14 +21,9 @@ const root = parse(body);
 
 const getImages = root.querySelectorAll('img').toString();
 
-const getLinks = getImages.match(/https.*?00/g);
-const getTenLinks = getLinks.slice(0, 11);
+const cleanLinks = getImages.match(/https.*?00/g);
 
-const linkArray = [];
-
-for (let link of getTenLinks) {
-  linkArray.push(link);
-}
+const linkArray = cleanLinks.slice(0,11);
 
 let fileName = '';
 
@@ -45,10 +40,28 @@ for (let i = 1; i <= 10; i++) {
     fileNameArray.push(fileName);
   }
 }
+
+for (let i = 0; i<=10; i++) {
+  fetch(linkArray[i])
+  .then(res => {
+    const dest = fs.createWriteStream(`./memes/${fileNameArray[i]}`);
+    res.body.pipe(dest);
+    console.log('done');
+  })
+}
+
+
+
+/* 
+
+ */
+
+
+
+/* 
 for (let i = 0; i <= 10; i++) {
   fetch(linkArray[i])
     .then((res) => res.buffer())
-    // console.log('value of response', res.url);
     .then((buffer) => {
       // Write the buffer to a file;
       fs.writeFile(path.join('./memes', fileNameArray[i]), buffer, (err) => {
@@ -63,6 +76,7 @@ for (let i = 0; i <= 10; i++) {
       console.error(error);
     });
 }
+ */
 
 // let a = fileNameArray;
 // let b = linkArray;
@@ -104,6 +118,13 @@ console.log(nameLinkObject(a, b)); */
 //   console.log(toString(minusFrontTag + minusEndTag));
 // }
 
+/* const getTenLinks = getLinks.slice(0, 11);
+
+const linkArray = [];
+
+for (let link of getTenLinks) {
+  linkArray.push(link);
+} */
 // console.log(cleanHtml());
 
 // const imageLinks = getImages.replaceAll(/ *>,<img *src=/g, '|');
